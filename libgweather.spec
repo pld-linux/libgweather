@@ -10,7 +10,7 @@ URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.8.0
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.8
-BuildRequires:	glib2-devel >= 2.13.0
+BuildRequires:	glib2-devel >= 1:2.13.0
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gnome-vfs2-devel >= 2.15.4
 BuildRequires:	gtk+2-devel >= 2:2.12.0
@@ -62,6 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 
 [ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
 	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/es_ES
 %find_lang libgweather
 
 %clean
