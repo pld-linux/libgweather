@@ -30,6 +30,7 @@ Summary:	Header files for libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gtk+2-devel >= 2:2.12.0
+Obsoletes:	gnome-applets-devel <= 2.21.4
 
 %description devel
 Header files for libgweather.
