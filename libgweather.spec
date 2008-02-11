@@ -7,16 +7,18 @@ Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.21/%{name}-%{version}.tar.bz2
 # Source0-md5:	715394c673895b52d1f807f874b66770
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.8.0
-BuildRequires:	autoconf >= 2.53
-BuildRequires:	automake >= 1:1.8
-BuildRequires:	glib2-devel >= 1:2.13.0
+BuildRequires:	GConf2-devel >= 2.21.90
+BuildRequires:	autoconf >= 2.59
+BuildRequires:	automake >= 1:1.9
+BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gnome-vfs2-devel >= 2.15.4
-BuildRequires:	gtk+2-devel >= 2:2.12.0
-BuildRequires:	intltool >= 0.36.1
+BuildRequires:	gnome-vfs2-devel >= 2.20.0
+BuildRequires:	gtk+2-devel >= 2:2.12.5
+BuildRequires:	intltool >= 0.37.0
 BuildRequires:	libtool
-BuildRequires:	pkgconfig
+BuildRequires:	pkgconfig >= 1:0.19
+BuildRequires:	sed >= 4.0
+Requires(post,preun):	GConf2
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -29,7 +31,8 @@ services for numerous locations.
 Summary:	Header files for libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	gtk+2-devel >= 2:2.12.0
+Requires:	gnome-vfs2-devel >= 2.20.0
+Requires:	gtk+2-devel >= 2:2.12.5
 Obsoletes:	gnome-applets-devel <= 2.21.4
 
 %description devel
@@ -37,7 +40,7 @@ Header files for libgweather.
 
 %package static
 Summary:	Static libgweather library
-Group:		Development/Libraries
+Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
@@ -46,11 +49,15 @@ Static libgweather library.
 %prep
 %setup -q
 
+sed -i -e 's#sr@Latn#sr@latin#' po/LINGUAS
+mv po/sr@{Latn,latin}.po
+
 %build
 %{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure
 %{__make}
@@ -61,9 +68,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-[ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
-	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/es_ES
+
 %find_lang libgweather
 
 %clean
@@ -81,8 +87,9 @@ rm -rf $RPM_BUILD_ROOT
 %files -f libgweather.lang
 %defattr(644,root,root,755)
 %doc ChangeLog README
-%{_sysconfdir}/gconf/schemas/gweather.schemas
 %attr(755,root,root) %{_libdir}/libgweather.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgweather.so.0
+%{_sysconfdir}/gconf/schemas/gweather.schemas
 %{_datadir}/libgweather
 
 %files devel
