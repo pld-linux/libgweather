@@ -1,4 +1,5 @@
-Summary:	libgweather is a library to access weather information from online services for numerous locations
+Summary:	Library to access weather information from online services for numerous locations
+Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
 Version:	2.21.2
 Release:	1
@@ -27,8 +28,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 libgweather is a library to access weather information from online
 services for numerous locations.
 
+%description -l pl.UTF-8
+libgweather to biblioteka pozwalająca na dostęp do informacji
+pogodowych z serwisów internetowych dla różnych miejsc.
+
 %package devel
 Summary:	Header files for libgweather
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gnome-vfs2-devel >= 2.20.0
@@ -38,13 +44,20 @@ Obsoletes:	gnome-applets-devel <= 2.21.4
 %description devel
 Header files for libgweather.
 
+%description devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki libgweather.
+
 %package static
 Summary:	Static libgweather library
+Summary(pl.UTF-8):	Statyczna biblioteka libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libgweather library.
+
+%description static -l pl.UTF-8
+Statyczna biblioteka libgweather.
 
 %prep
 %setup -q
