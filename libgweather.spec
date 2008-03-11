@@ -1,20 +1,20 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	2.21.92
+Version:	2.22.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.21/%{name}-%{version}.tar.bz2
-# Source0-md5:	ce603722f9b427d89fe97b7a4f8cf9e8
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.22/%{name}-%{version}.tar.bz2
+# Source0-md5:	f25d3dada7416bf2d5edb5c7fd7ffce0
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.21.90
+BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gnome-vfs2-devel >= 2.20.0
-BuildRequires:	gtk+2-devel >= 2:2.12.5
+BuildRequires:	gnome-vfs2-devel >= 2.22.0
+BuildRequires:	gtk+2-devel >= 2:2.12.8
 BuildRequires:	intltool >= 0.37.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig >= 1:0.19
@@ -37,8 +37,8 @@ Summary:	Header files for libgweather
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	gnome-vfs2-devel >= 2.20.0
-Requires:	gtk+2-devel >= 2:2.12.5
+Requires:	gnome-vfs2-devel >= 2.22.0
+Requires:	gtk+2-devel >= 2:2.12.8
 Obsoletes:	gnome-applets-devel <= 2.21.4
 
 %description devel
