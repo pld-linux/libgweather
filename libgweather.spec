@@ -1,12 +1,12 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	2.22.0
+Version:	2.22.1.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.22/%{name}-%{version}.tar.bz2
-# Source0-md5:	f25d3dada7416bf2d5edb5c7fd7ffce0
+# Source0-md5:	6b0e12931db8c640992bef75bd3cc24b
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	autoconf >= 2.59
@@ -101,7 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog README
 %attr(755,root,root) %{_libdir}/libgweather.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgweather.so.0
+%attr(755,root,root) %ghost %{_libdir}/libgweather.so.1
 %{_sysconfdir}/gconf/schemas/gweather.schemas
 %{_datadir}/libgweather
 
