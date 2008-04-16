@@ -74,7 +74,8 @@ mv po-locations/sr@{Latn,latin}.po
 %{__autoheader}
 %{__automake}
 %configure
-%{__make} -j1
+%{__make} -j1 -C data
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
