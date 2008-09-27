@@ -1,24 +1,24 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	2.22.3
+Version:	2.24.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.22/%{name}-%{version}.tar.bz2
-# Source0-md5:	151e03d925579241decc92afa4d07182
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.24/%{name}-%{version}.tar.bz2
+# Source0-md5:	d006328ec5cebc5dbf3a18834db95bba
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.22.0
+BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gnome-vfs2-devel >= 2.22.0
-BuildRequires:	gtk+2-devel >= 2:2.12.8
-BuildRequires:	intltool >= 0.37.0
+BuildRequires:	gtk+2-devel >= 2:2.14.0
+BuildRequires:	intltool >= 0.40.0
+BuildRequires:	libsoup-devel >= 2.4.0
 BuildRequires:	libtool
+BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	pkgconfig >= 1:0.19
-BuildRequires:	sed >= 4.0
 Requires(post,preun):	GConf2
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
@@ -37,8 +37,10 @@ Summary:	Header files for libgweather
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	gnome-vfs2-devel >= 2.22.0
-Requires:	gtk+2-devel >= 2:2.12.8
+Requires:	GConf2-devel >= 2.24.0
+Requires:	gtk+2-devel >= 2:2.14.0
+Requires:	libsoup-devel >= 2.4.0
+Requires:	libxml2-devel >= 1:2.6.30
 Obsoletes:	gnome-applets-devel <= 2.21.4
 
 %description devel
@@ -61,10 +63,6 @@ Statyczna biblioteka libgweather.
 
 %prep
 %setup -q
-
-sed -i -e 's#sr@Latn#sr@latin#' po/LINGUAS
-mv po/sr@{Latn,latin}.po
-mv po-locations/sr@{Latn,latin}.po
 
 %build
 %{__intltoolize}
