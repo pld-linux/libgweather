@@ -71,7 +71,8 @@ Statyczna biblioteka libgweather.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--with-zoneinfo-dir=%{_datadir}/zoneinfo
 %{__make} -j1 -C data
 %{__make}
 
