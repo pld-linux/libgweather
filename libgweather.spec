@@ -1,21 +1,22 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	2.24.3
+Version:	2.26.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.24/%{name}-%{version}.tar.bz2
-# Source0-md5:	ab29ea93a87339bb1571434fe2086789
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.26/%{name}-%{version}.tar.bz2
+# Source0-md5:	b96016d7b35c66cf251189e9851ee252
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.24.0
+BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gtk+2-devel >= 2:2.14.0
+BuildRequires:	gtk+2-devel >= 2:2.16.0
+BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libsoup-devel >= 2.4.0
+BuildRequires:	libsoup-gnome-devel >= 2.26.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	pkgconfig >= 1:0.19
@@ -37,9 +38,9 @@ Summary:	Header files for libgweather
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	GConf2-devel >= 2.24.0
-Requires:	gtk+2-devel >= 2:2.14.0
-Requires:	libsoup-devel >= 2.4.0
+Requires:	GConf2-devel >= 2.26.0
+Requires:	gtk+2-devel >= 2:2.16.0
+Requires:	libsoup-devel >= 2.26.0
 Requires:	libxml2-devel >= 1:2.6.30
 Obsoletes:	gnome-applets-devel <= 2.21.4
 
@@ -61,6 +62,18 @@ Static libgweather library.
 %description static -l pl.UTF-8
 Statyczna biblioteka libgweather.
 
+%package apidocs
+Summary:	libgweather API documentation
+Summary(pl.UTF-8):	Dokumentacja API biblioteki libgweather
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+libgweather API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki libgweather.
+
 %prep
 %setup -q
 
@@ -72,7 +85,9 @@ Statyczna biblioteka libgweather.
 %{__autoheader}
 %{__automake}
 %configure \
-	--with-zoneinfo-dir=%{_datadir}/zoneinfo
+	--with-zoneinfo-dir=%{_datadir}/zoneinfo \
+	--enable-gtk-doc \
+	--with-html-dir=%{_gtkdocdir}
 %{__make} -j1 -C data
 %{__make}
 
@@ -116,3 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgweather.a
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/libgweather
