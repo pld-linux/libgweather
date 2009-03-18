@@ -8,15 +8,15 @@ Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.26/%{name}-%{version}.tar.bz2
 # Source0-md5:	b96016d7b35c66cf251189e9851ee252
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.25.0
+BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gtk+2-devel >= 2:2.15.0
+BuildRequires:	gtk+2-devel >= 2:2.16.0
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libsoup-gnome-devel >= 2.25.90
+BuildRequires:	libsoup-gnome-devel >= 2.26.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	pkgconfig >= 1:0.19
@@ -38,9 +38,9 @@ Summary:	Header files for libgweather
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	GConf2-devel >= 2.25.0
-Requires:	gtk+2-devel >= 2:2.15.0
-Requires:	libsoup-devel >= 2.25.90
+Requires:	GConf2-devel >= 2.26.0
+Requires:	gtk+2-devel >= 2:2.16.0
+Requires:	libsoup-devel >= 2.26.0
 Requires:	libxml2-devel >= 1:2.6.30
 Obsoletes:	gnome-applets-devel <= 2.21.4
 
