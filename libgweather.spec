@@ -1,3 +1,6 @@
+# TODO
+# - this package is huge (80MB for library!), package locations by l10n <> iso639-1 map like
+#   kde4-kdebase-runtime has done it partially
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
@@ -7,6 +10,7 @@ License:	GPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.26/%{name}-%{version}.tar.bz2
 # Source0-md5:	b96016d7b35c66cf251189e9851ee252
+Source1:	l10n-iso639-1
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	autoconf >= 2.59
