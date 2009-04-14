@@ -1,16 +1,12 @@
-# TODO
-# - this package is huge (80MB for library!), package locations by l10n <> iso639-1 map like
-#   kde4-kdebase-runtime has done it partially
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	2.26.0
-Release:	2
+Version:	2.26.1
+Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	b96016d7b35c66cf251189e9851ee252
-Source1:	l10n-iso639-1
+# Source0-md5:	382041ee8f4efeec1afde968624d34fe
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	autoconf >= 2.59
@@ -106,6 +102,9 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/es_ES
 
 %find_lang libgweather
 
+find $RPM_BUILD_ROOT -name "Locations.*.xml" | sed 's:'"$RPM_BUILD_ROOT"'::
+s:\(.*\)/Locations\.\([^.]*\)\.xml:%lang(\2) \1/Locations.\2.xml:' >> libgweather.lang
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -124,7 +123,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgweather.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgweather.so.1
 %{_sysconfdir}/gconf/schemas/gweather.schemas
-%{_datadir}/libgweather
+%dir %{_datadir}/libgweather
+%{_datadir}/libgweather/Locations.xml
+%{_datadir}/libgweather/locations.dtd
 
 %files devel
 %defattr(644,root,root,755)
