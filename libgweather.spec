@@ -1,12 +1,12 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	2.26.1
-Release:	2
+Version:	2.26.2.1
+Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	382041ee8f4efeec1afde968624d34fe
+# Source0-md5:	cef0447b62235c4662aa9691dd9a6c92
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	autoconf >= 2.59
@@ -81,7 +81,7 @@ Dokumentacja API biblioteki libgweather.
 %{__gtkdocize}
 %{__intltoolize}
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
