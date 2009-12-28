@@ -1,12 +1,12 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	2.28.0
-Release:	2
+Version:	2.29.4
+Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.28/%{name}-%{version}.tar.bz2
-# Source0-md5:	9f4457144d32d4004e0e045240ab51dc
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.29/%{name}-%{version}.tar.bz2
+# Source0-md5:	3fe3fabe3e6f8a5e1ef525cf2e06d050
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	autoconf >= 2.59
@@ -20,6 +20,8 @@ BuildRequires:	libsoup-gnome-devel >= 2.26.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	pkgconfig >= 1:0.19
+Requires(post,postun):	gnome-icon-theme
+Requires(post,postun):	gtk+2
 Requires(post,preun):	GConf2
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
@@ -76,6 +78,8 @@ Dokumentacja API biblioteki libgweather.
 
 %prep
 %setup -q
+sed -i s#^en@shaw## po/LINGUAS
+rm po/en@shaw.po
 
 %build
 %{__gtkdocize}
@@ -110,12 +114,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
+%update_icon_cache gnome
 %gconf_schema_install gweather.schemas
 
 %preun
 %gconf_schema_uninstall gweather.schemas
 
-%postun	-p /sbin/ldconfig
+%postun
+/sbin/ldconfig
+%update_icon_cache gnome
 
 %files -f libgweather.lang
 %defattr(644,root,root,755)
@@ -126,6 +133,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/libgweather
 %{_datadir}/libgweather/Locations.xml
 %{_datadir}/libgweather/locations.dtd
+%{_iconsdir}/gnome/*/status/*.png
+%{_iconsdir}/gnome/scalable/status/*.svg
 
 %files devel
 %defattr(644,root,root,755)
