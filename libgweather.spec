@@ -14,6 +14,7 @@ BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gobject-introspection-devel >= 0.6.7
+BuildRequires:	glib2-devel >= 2.13.0
 BuildRequires:	gtk+3-devel >= 2.91.0
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	intltool >= 0.40.3
@@ -22,7 +23,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	pkgconfig >= 1:0.19
 Requires(post,postun):	gnome-icon-theme
-Requires(post,postun):	gtk+2
+Requires(post,postun):	gtk-update-icon-cache
 Requires(post,preun):	GConf2
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
