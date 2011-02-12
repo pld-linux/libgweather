@@ -2,7 +2,7 @@ Summary:	Library to access weather information from online services for numerous
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
 Version:	2.91.6
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/2.91/%{name}-%{version}.tar.bz2
@@ -14,8 +14,8 @@ BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gobject-introspection-devel >= 0.6.7
-BuildRequires:	glib2-devel >= 2.13.0
-BuildRequires:	gtk+3-devel >= 2.91.0
+BuildRequires:	glib2-devel >= 1:2.28.0
+BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	intltool >= 0.40.3
 BuildRequires:	libsoup-gnome-devel >= 2.26.0
@@ -43,7 +43,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	GConf2-devel >= 2.26.0
-Requires:	gtk+3-devel >= 2.91.0
+Requires:	gtk+3-devel >= 3.0.0
 Requires:	libsoup-devel >= 2.26.0
 Requires:	libxml2-devel >= 1:2.6.30
 Obsoletes:	gnome-applets-devel <= 2.21.4
@@ -80,7 +80,7 @@ Dokumentacja API biblioteki libgweather.
 
 %prep
 %setup -q
-sed -i s#^en@shaw## po/LINGUAS
+sed -i "s#^en@shaw##" po/LINGUAS
 rm po/en@shaw.po
 
 %build
@@ -96,6 +96,7 @@ rm po/en@shaw.po
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-silent-rules
+
 %{__make} -j1 -C data
 %{__make}
 
@@ -105,7 +106,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/es_ES
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/es_ES
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang libgweather-3.0
 
@@ -144,7 +146,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgweather-3.so
-%{_libdir}/libgweather-3.la
 %{_includedir}/libgweather-3.0
 %{_pkgconfigdir}/gweather-3.0.pc
 %{_datadir}/gir-1.0/GWeather-3.0.gir
