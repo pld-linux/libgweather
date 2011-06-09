@@ -103,7 +103,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/es_ES
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/es_ES
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang libgweather
 
@@ -141,7 +142,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgweather.so
-%{_libdir}/libgweather.la
 %{_includedir}/libgweather
 %{_pkgconfigdir}/gweather.pc
 
