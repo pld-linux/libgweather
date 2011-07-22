@@ -2,7 +2,7 @@ Summary:	Library to access weather information from online services for numerous
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
 Version:	3.0.2
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.0/%{name}-%{version}.tar.bz2
@@ -112,9 +112,6 @@ rm -rf $RPM_BUILD_ROOT
 
 find $RPM_BUILD_ROOT -name "Locations.*.xml" | sed 's:'"$RPM_BUILD_ROOT"'::
 s:\(.*\)/Locations\.\([^.]*\)\.xml:%lang(\2) \1/Locations.\2.xml:' >> libgweather-3.0.lang
-
-# gnome-icon-theme doesn't provide this directory
-rm -rf $RPM_BUILD_ROOT%{_iconsdir}/gnome/scalable
 
 %clean
 rm -rf $RPM_BUILD_ROOT
