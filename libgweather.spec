@@ -1,12 +1,12 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	3.0.2
-Release:	4
+Version:	3.2.0
+Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	f1a96c6f19c9a0bc6b4e12acc9a8a85d
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.2/%{name}-%{version}.tar.bz2
+# Source0-md5:	6932d8322223a4c786d76e8aebddcc4a
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	autoconf >= 2.62
@@ -14,10 +14,10 @@ BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gobject-introspection-devel >= 0.9.5
+BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	gtk-doc >= 1.9
-BuildRequires:	intltool >= 0.40.3
+BuildRequires:	intltool >= 0.40.6
 BuildRequires:	libsoup-gnome-devel >= 2.26.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.30
@@ -94,7 +94,8 @@ Dokumentacja API biblioteki libgweather.
 	--with-zoneinfo-dir=%{_datadir}/zoneinfo \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
-	--disable-silent-rules
+	--disable-silent-rules \
+	--enable-static
 
 %{__make} -j1 -C data
 %{__make}
