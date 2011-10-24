@@ -1,12 +1,12 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	3.2.0
+Version:	3.2.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	6932d8322223a4c786d76e8aebddcc4a
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.2/%{name}-%{version}.tar.xz
+# Source0-md5:	de91f7ed59508d2b96c319e19e27fda5
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	autoconf >= 2.62
@@ -22,6 +22,8 @@ BuildRequires:	libsoup-gnome-devel >= 2.26.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	pkgconfig >= 1:0.19
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Requires(post,postun):	gnome-icon-theme
 Requires(post,postun):	gnome-icon-theme-symbolic
 Requires(post,postun):	gtk-update-icon-cache
