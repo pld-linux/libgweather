@@ -8,15 +8,15 @@ Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.4/%{name}-%{version}.tar.xz
 # Source0-md5:	58ddea04842bd7ff122c7eae29a65815
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.26.0
-BuildRequires:	autoconf >= 2.62
-BuildRequires:	automake >= 1:1.9
+BuildRequires:	GConf2-devel >= 2.8.0
+BuildRequires:	autoconf >= 2.64
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.28.0
+BuildRequires:	glib2-devel >= 1:2.14.0
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.0.0
-BuildRequires:	gtk-doc >= 1.9
+BuildRequires:	gtk-doc >= 1.11
 BuildRequires:	intltool >= 0.40.6
 BuildRequires:	libsoup-gnome-devel >= 2.26.0
 BuildRequires:	libtool >= 2:2.2.6
@@ -45,7 +45,7 @@ Summary:	Header files for libgweather
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	GConf2-devel >= 2.26.0
+Requires:	GConf2-devel >= 2.8.0
 Requires:	gtk+3-devel >= 3.0.0
 Requires:	libsoup-devel >= 2.26.0
 Requires:	libxml2-devel >= 1:2.6.30
