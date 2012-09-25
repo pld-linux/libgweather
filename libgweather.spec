@@ -1,23 +1,22 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	3.4.1
+Version:	3.6.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.4/%{name}-%{version}.tar.xz
-# Source0-md5:	58ddea04842bd7ff122c7eae29a65815
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.6/%{name}-%{version}.tar.xz
+# Source0-md5:	b1d25349e29d6327041c21ac354e15f8
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.8.0
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.14.0
+BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	gtk-doc >= 1.11
-BuildRequires:	intltool >= 0.40.6
+BuildRequires:	intltool >= 0.50.0
 BuildRequires:	libsoup-gnome-devel >= 2.26.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 1:2.6.30
@@ -27,7 +26,7 @@ BuildRequires:	xz
 Requires(post,postun):	gnome-icon-theme
 Requires(post,postun):	gnome-icon-theme-symbolic
 Requires(post,postun):	gtk-update-icon-cache
-Requires(post,preun):	GConf2
+Requires(post,postun):	glib2 >= 1:2.26.0
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -45,7 +44,6 @@ Summary:	Header files for libgweather
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	GConf2-devel >= 2.8.0
 Requires:	gtk+3-devel >= 3.0.0
 Requires:	libsoup-devel >= 2.26.0
 Requires:	libxml2-devel >= 1:2.6.30
@@ -108,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/es_ES
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang libgweather-3.0
@@ -121,22 +119,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
+%glib_compile_schemas
 %update_icon_cache gnome
-%gconf_schema_install gweather.schemas
-
-%preun
-%gconf_schema_uninstall gweather.schemas
 
 %postun
 /sbin/ldconfig
+%glib_compile_schemas
 %update_icon_cache gnome
 
 %files -f libgweather-3.0.lang
 %defattr(644,root,root,755)
 %doc ChangeLog README
 %attr(755,root,root) %{_libdir}/libgweather-3.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgweather-3.so.0
-%{_sysconfdir}/gconf/schemas/gweather.schemas
+%attr(755,root,root) %ghost %{_libdir}/libgweather-3.so.1
+%{_datadir}/glib-2.0/schemas/org.gnome.GWeather.enums.xml
+%{_datadir}/glib-2.0/schemas/org.gnome.GWeather.gschema.xml
 %dir %{_datadir}/libgweather
 %{_datadir}/libgweather/Locations.xml
 %{_datadir}/libgweather/locations.dtd
