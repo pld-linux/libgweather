@@ -1,23 +1,23 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	3.6.2
+Version:	3.8.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	29ec69bc04c12a1642046a7044f9e305
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.8/%{name}-%{version}.tar.xz
+# Source0-md5:	06610b910fd9d841b81041c2f457df7b
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.26.0
+BuildRequires:	glib2-devel >= 1:2.35.1
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	gtk-doc >= 1.11
 BuildRequires:	intltool >= 0.50.0
-BuildRequires:	libsoup-gnome-devel >= 2.26.0
+BuildRequires:	libsoup-gnome-devel >= 2.34.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	pkgconfig >= 1:0.19
@@ -26,7 +26,7 @@ BuildRequires:	xz
 Requires(post,postun):	gnome-icon-theme
 Requires(post,postun):	gnome-icon-theme-symbolic
 Requires(post,postun):	gtk-update-icon-cache
-Requires(post,postun):	glib2 >= 1:2.26.0
+Requires(post,postun):	glib2 >= 1:2.35.1
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -45,7 +45,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gtk+3-devel >= 3.0.0
-Requires:	libsoup-devel >= 2.26.0
+Requires:	libsoup-devel >= 2.34.0
 Requires:	libxml2-devel >= 1:2.6.30
 Obsoletes:	gnome-applets-devel <= 2.21.4
 
@@ -131,7 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog README
 %attr(755,root,root) %{_libdir}/libgweather-3.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgweather-3.so.1
+%attr(755,root,root) %ghost %{_libdir}/libgweather-3.so.3
 %{_datadir}/glib-2.0/schemas/org.gnome.GWeather.enums.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.GWeather.gschema.xml
 %dir %{_datadir}/libgweather
