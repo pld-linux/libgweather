@@ -10,14 +10,14 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.8/%{name}-%{versio
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-devel >= 0.18
 BuildRequires:	glib2-devel >= 1:2.35.1
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	gtk-doc >= 1.11
 BuildRequires:	intltool >= 0.50.0
-BuildRequires:	libsoup-gnome-devel >= 2.34.0
+BuildRequires:	libsoup-devel >= 2.34.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	pkgconfig >= 1:0.19
