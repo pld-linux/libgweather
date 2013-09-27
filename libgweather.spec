@@ -32,6 +32,9 @@ Requires(post,postun):	gnome-icon-theme
 Requires(post,postun):	gnome-icon-theme-symbolic
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	glib2 >= 1:2.35.1
+Requires:	glib2 >= 1:2.35.1
+Requires:	libsoup >= 2.34.0
+Requires:	libxml2 >= 1:2.6.30
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -86,7 +89,7 @@ Dokumentacja API biblioteki libgweather.
 
 %package -n vala-libgweather
 Summary:        libgweather API for Vala language
-Summary(pl.UTF-8):      API libgweather dla języka Vala
+Summary(pl.UTF-8):      API biblioteki libgweather dla języka Vala
 Group:          Development/Libraries
 Requires:       %{name}-devel = %{version}-%{release}
 Requires:       vala >= 2:0.18.0
@@ -95,7 +98,7 @@ Requires:       vala >= 2:0.18.0
 libgweather API for Vala language.
 
 %description -n vala-libgweather -l pl.UTF-8
-API libgweather dla języka Vala.
+API biblioteki libgweather dla języka Vala.
 
 %prep
 %setup -q
