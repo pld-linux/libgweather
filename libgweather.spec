@@ -1,12 +1,16 @@
+#
+# Conditional build:
+%bcond_without	vala		# do not build Vala API
+#
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	3.8.2
+Version:	3.10.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	33c947222929d023f0446796c322caaf
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.10/%{name}-%{version}.tar.xz
+# Source0-md5:	fe37c6b8f58fd678a7bcfdbdfe4bd1bf
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
@@ -22,6 +26,7 @@ BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	tar >= 1:1.22
+%{?with_vala:BuildRequires:	vala >= 2:0.18.0}
 BuildRequires:	xz
 Requires(post,postun):	gnome-icon-theme
 Requires(post,postun):	gnome-icon-theme-symbolic
@@ -79,6 +84,19 @@ libgweather API documentation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API biblioteki libgweather.
 
+%package -n vala-libgweather
+Summary:        libgweather API for Vala language
+Summary(pl.UTF-8):      API libgweather dla języka Vala
+Group:          Development/Libraries
+Requires:       %{name}-devel = %{version}-%{release}
+Requires:       vala >= 2:0.18.0
+
+%description -n vala-libgweather
+libgweather API for Vala language.
+
+%description -n vala-libgweather -l pl.UTF-8
+API libgweather dla języka Vala.
+
 %prep
 %setup -q
 
@@ -91,6 +109,7 @@ Dokumentacja API biblioteki libgweather.
 %{__autoheader}
 %{__automake}
 %configure \
+	%{__enable_disable vala vala} \
 	--with-zoneinfo-dir=%{_datadir}/zoneinfo \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
@@ -109,10 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
-%find_lang libgweather-3.0
-
-find $RPM_BUILD_ROOT -name "Locations.*.xml" | sed 's:'"$RPM_BUILD_ROOT"'::
-s:\(.*\)/Locations\.\([^.]*\)\.xml:%lang(\2) \1/Locations.\2.xml:' >> libgweather-3.0.lang
+%find_lang libgweather-3.0 --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -131,7 +147,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog README
 %attr(755,root,root) %{_libdir}/libgweather-3.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgweather-3.so.3
+%attr(755,root,root) %ghost %{_libdir}/libgweather-3.so.6
 %{_datadir}/glib-2.0/schemas/org.gnome.GWeather.enums.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.GWeather.gschema.xml
 %dir %{_datadir}/libgweather
@@ -155,3 +171,9 @@ rm -rf $RPM_BUILD_ROOT
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/libgweather-3.0
+
+%if %{with vala}
+%files -n vala-libgweather
+%defattr(644,root,root,755)
+%{_datadir}/vala/vapi/gweather-3.0.vapi
+%endif
