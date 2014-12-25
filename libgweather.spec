@@ -1,6 +1,7 @@
 #
 # Conditional build:
-%bcond_without	vala		# do not build Vala API
+%bcond_without	glade	# Glade catalog
+%bcond_without	vala	# do not build Vala API
 #
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
@@ -16,6 +17,7 @@ BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gettext-devel >= 0.18
 BuildRequires:	geocode-glib-devel
+%{?with_glade:BuildRequires:	glade-devel >= 2.0}
 BuildRequires:	glib2-devel >= 1:2.35.1
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gobject-introspection-devel >= 0.10.0
@@ -88,10 +90,10 @@ Dokumentacja API biblioteki libgweather.
 
 %package glade
 Summary:	libgweather catalog file for Glade
-Summary(pl.UTF-8):      Plik katalogu libgweather dla Glade
-Group:          X11/Development/Libraries
-Requires:       %{name}-devel = %{version}-%{release}
-Requires:       glade >= 2.0
+Summary(pl.UTF-8):	Plik katalogu libgweather dla Glade
+Group:		X11/Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+Requires:	glade >= 2.0
 
 %description glade
 libgweather catalog file for Glade.
@@ -124,12 +126,13 @@ API biblioteki libgweather dla języka Vala.
 %{__autoheader}
 %{__automake}
 %configure \
-	%{__enable_disable vala vala} \
-	--with-zoneinfo-dir=%{_datadir}/zoneinfo \
+	%{!?with_glade:--disable-glade-catalog} \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir} \
 	--disable-silent-rules \
-	--enable-static
+	--enable-static \
+	%{__enable_disable vala} \
+	--with-html-dir=%{_gtkdocdir} \
+	--with-zoneinfo-dir=%{_datadir}/zoneinfo
 
 %{__make} -j1 -C data
 %{__make}
@@ -183,9 +186,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_gtkdocdir}/libgweather-3.0
 
+%if %{with glade}
 %files glade
 %defattr(644,root,root,755)
 %{_datadir}/glade/catalogs/libgweather.xml
+%endif
 
 %if %{with vala}
 %files -n vala-libgweather
