@@ -15,7 +15,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.14/%{name}-%{versi
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	gettext-devel >= 0.18
+BuildRequires:	gettext-tools >= 0.18
 BuildRequires:	geocode-glib-devel
 %{?with_glade:BuildRequires:	glade-devel >= 2.0}
 BuildRequires:	glib2-devel >= 1:2.35.1
