@@ -28,9 +28,11 @@ BuildRequires:	libsoup-devel >= 2.34.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	pkgconfig >= 1:0.19
+BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18.0}
 BuildRequires:	xz
+Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	glib2 >= 1:2.35.1
 Requires:	glib2 >= 1:2.35.1
 Requires:	gtk+3 >= 3.14.0
