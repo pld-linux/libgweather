@@ -6,12 +6,12 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	3.18.1
+Version:	3.20.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.18/%{name}-%{version}.tar.xz
-# Source0-md5:	0a4bd5421c9cd2d845d0a91c8caa6117
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.20/%{name}-%{version}.tar.xz
+# Source0-md5:	e3c273bce7772450b3d93136bcbb1653
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
@@ -24,7 +24,7 @@ BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.14.0
 BuildRequires:	gtk-doc >= 1.11
 BuildRequires:	intltool >= 0.50.0
-BuildRequires:	libsoup-devel >= 2.34.0
+BuildRequires:	libsoup-devel >= 2.44.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	pkgconfig >= 1:0.19
@@ -36,7 +36,7 @@ Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	glib2 >= 1:2.35.1
 Requires:	glib2 >= 1:2.35.1
 Requires:	gtk+3 >= 3.14.0
-Requires:	libsoup >= 2.34.0
+Requires:	libsoup >= 2.44.0
 Requires:	libxml2 >= 1:2.6.30
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
@@ -56,7 +56,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gtk+3-devel >= 3.14.0
-Requires:	libsoup-devel >= 2.34.0
+Requires:	libsoup-devel >= 2.44.0
 Requires:	libxml2-devel >= 1:2.6.30
 Obsoletes:	gnome-applets-devel <= 2.21.4
 
