@@ -2,12 +2,12 @@
 # Conditional build:
 %bcond_without	glade	# Glade catalog
 %bcond_without	vala	# do not build Vala API
-#
+
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
 Version:	3.20.0
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.20/%{name}-%{version}.tar.xz
@@ -109,6 +109,9 @@ Summary(pl.UTF-8):	API biblioteki libgweather dla języka Vala
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.18.0
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description -n vala-libgweather
 libgweather API for Vala language.
