@@ -7,7 +7,7 @@ Summary:	Library to access weather information from online services for numerous
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
 Version:	3.20.0
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.20/%{name}-%{version}.tar.xz
@@ -83,6 +83,9 @@ Summary:	libgweather API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libgweather
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 libgweather API documentation.
