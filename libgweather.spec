@@ -6,15 +6,13 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	3.26.1
+Version:	3.28.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.26/%{name}-%{version}.tar.xz
-# Source0-md5:	ae9c0aad9e66867a6f2bf04711738b32
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.28/%{name}-%{version}.tar.xz
+# Source0-md5:	767b4af6ce55bda74cb2f53aaefcfc6f
 URL:		http://www.gnome.org/
-BuildRequires:	autoconf >= 2.64
-BuildRequires:	automake >= 1:1.11
 BuildRequires:	geocode-glib-devel
 BuildRequires:	gettext-tools >= 0.18
 %{?with_glade:BuildRequires:	glade-devel >= 2.0}
@@ -25,8 +23,8 @@ BuildRequires:	gtk+3-devel >= 3.14.0
 BuildRequires:	gtk-doc >= 1.11
 BuildRequires:	intltool >= 0.50.0
 BuildRequires:	libsoup-devel >= 2.44.0
-BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 1:2.6.30
+BuildRequires:	meson >= 0.43.0
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	tar >= 1:1.22
@@ -59,6 +57,7 @@ Requires:	gtk+3-devel >= 3.14.0
 Requires:	libsoup-devel >= 2.44.0
 Requires:	libxml2-devel >= 1:2.6.30
 Obsoletes:	gnome-applets-devel <= 2.21.4
+Obsoletes:	libgweather-static < 3.28.0
 
 %description devel
 Header files for libgweather.
@@ -126,33 +125,20 @@ API biblioteki libgweather dla języka Vala.
 %setup -q
 
 %build
-%{__gtkdocize}
-%{__intltoolize}
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	%{!?with_glade:--disable-glade-catalog} \
-	--enable-gtk-doc \
-	--disable-silent-rules \
-	--enable-static \
-	%{__enable_disable vala} \
-	--with-html-dir=%{_gtkdocdir} \
-	--with-zoneinfo-dir=%{_datadir}/zoneinfo
+%meson build \
+	-Dglade_catalog=%{!?with_glade:false}%{?with_glade:true} \
+	-Dgtk_doc=true \
+	-Dzoneinfo_dir=%{_datadir}/zoneinfo \
+	-Denable_vala=%{!?with_vala:false}%{?with_vala:true}
 
-%{__make} -j1 -C data
-%{__make}
+%meson_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%meson_install -C build
 
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang libgweather-3.0 --all-name
 
@@ -171,7 +157,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS HACKING NEWS README
 %attr(755,root,root) %{_libdir}/libgweather-3.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgweather-3.so.6
+%attr(755,root,root) %ghost %{_libdir}/libgweather-3.so.15
 %{_datadir}/glib-2.0/schemas/org.gnome.GWeather.enums.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.GWeather.gschema.xml
 %dir %{_datadir}/libgweather
@@ -186,13 +172,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/gweather-3.0.pc
 %{_datadir}/gir-1.0/GWeather-3.0.gir
 
-%files static
-%defattr(644,root,root,755)
-%{_libdir}/libgweather-3.a
-
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/libgweather-3.0
+%{_gtkdocdir}/libgweather
 
 %if %{with glade}
 %files glade
@@ -204,4 +186,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -n vala-libgweather
 %defattr(644,root,root,755)
 %{_datadir}/vala/vapi/gweather-3.0.vapi
+%{_datadir}/vala/vapi/gweather-3.0.deps
 %endif
