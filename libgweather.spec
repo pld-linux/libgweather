@@ -26,7 +26,7 @@ BuildRequires:	libsoup-devel >= 2.44.0
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	meson >= 0.43.0
 BuildRequires:	pkgconfig >= 1:0.19
-BuildRequires:	rpmbuild(macros) >= 1.592
+BuildRequires:	rpmbuild(macros) >= 1.727
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18.0}
 BuildRequires:	xz
