@@ -6,27 +6,26 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	3.28.2
+Version:	3.32.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.28/%{name}-%{version}.tar.xz
-# Source0-md5:	4f8771fedc83bd1c7594c5aa7f21dedb
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.32/%{name}-%{version}.tar.xz
+# Source0-md5:	048de183cbeaf7353a875cb5ebd9b4f9
 URL:		http://www.gnome.org/
 BuildRequires:	geocode-glib-devel
 BuildRequires:	gettext-tools >= 0.18
 %{?with_glade:BuildRequires:	glade-devel >= 2.0}
 BuildRequires:	glib2-devel >= 1:2.35.1
-BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.14.0
 BuildRequires:	gtk-doc >= 1.11
-BuildRequires:	intltool >= 0.50.0
 BuildRequires:	libsoup-devel >= 2.44.0
 BuildRequires:	libxml2-devel >= 1:2.6.30
-BuildRequires:	meson >= 0.43.0
+BuildRequires:	meson >= 0.48.0
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.19
-BuildRequires:	rpmbuild(macros) >= 1.727
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18.0}
 BuildRequires:	xz
@@ -131,13 +130,14 @@ API biblioteki libgweather dla języka Vala.
 	-Dzoneinfo_dir=%{_datadir}/zoneinfo \
 	-Denable_vala=%{!?with_vala:false}%{?with_vala:true}
 
-%meson_build -C build
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%meson_install -C build
+%ninja_install -C build
 
+# just a copy of es
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
 
 %find_lang libgweather-3.0 --all-name
@@ -155,7 +155,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f libgweather-3.0.lang
 %defattr(644,root,root,755)
-%doc AUTHORS HACKING NEWS README
+%doc AUTHORS MAINTAINERS NEWS README.md
 %attr(755,root,root) %{_libdir}/libgweather-3.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgweather-3.so.15
 %{_datadir}/glib-2.0/schemas/org.gnome.GWeather.enums.xml
