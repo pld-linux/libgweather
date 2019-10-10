@@ -6,23 +6,23 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	3.32.2
+Version:	3.34.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.32/%{name}-%{version}.tar.xz
-# Source0-md5:	7e002a977df53914d7248932f07e8a0e
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.34/%{name}-%{version}.tar.xz
+# Source0-md5:	52c3b1e27887fc88f862c92c42d930c1
 URL:		https://wiki.gnome.org/Projects/LibGWeather
 BuildRequires:	geocode-glib-devel
 BuildRequires:	gettext-tools >= 0.18
 %{?with_glade:BuildRequires:	glade-devel >= 2.0}
-BuildRequires:	glib2-devel >= 1:2.35.1
+BuildRequires:	glib2-devel >= 1:2.44.0
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.14.0
 BuildRequires:	gtk-doc >= 1.11
 BuildRequires:	libsoup-devel >= 2.44.0
 BuildRequires:	libxml2-devel >= 1:2.6.30
-BuildRequires:	meson >= 0.48.0
+BuildRequires:	meson >= 0.50.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	rpmbuild(macros) >= 1.736
@@ -30,8 +30,8 @@ BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18.0}
 BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
-Requires(post,postun):	glib2 >= 1:2.35.1
-Requires:	glib2 >= 1:2.35.1
+Requires(post,postun):	glib2 >= 1:2.44.0
+Requires:	glib2 >= 1:2.44.0
 Requires:	gtk+3 >= 3.14.0
 Requires:	libsoup >= 2.44.0
 Requires:	libxml2 >= 1:2.6.30
@@ -52,6 +52,7 @@ Summary:	Header files for libgweather
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgweather
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.44.0
 Requires:	gtk+3-devel >= 3.14.0
 Requires:	libsoup-devel >= 2.44.0
 Requires:	libxml2-devel >= 1:2.6.30
@@ -157,7 +158,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS MAINTAINERS NEWS README.md
 %attr(755,root,root) %{_libdir}/libgweather-3.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgweather-3.so.15
+%attr(755,root,root) %ghost %{_libdir}/libgweather-3.so.16
 %{_datadir}/glib-2.0/schemas/org.gnome.GWeather.enums.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.GWeather.gschema.xml
 %dir %{_datadir}/libgweather
