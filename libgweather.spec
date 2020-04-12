@@ -1,17 +1,17 @@
 #
 # Conditional build:
 %bcond_without	glade	# Glade catalog
-%bcond_without	vala	# do not build Vala API
+%bcond_without	vala	# Vala API
 
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	3.34.0
+Version:	3.36.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.34/%{name}-%{version}.tar.xz
-# Source0-md5:	52c3b1e27887fc88f862c92c42d930c1
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.36/%{name}-%{version}.tar.xz
+# Source0-md5:	32e43c6b35bec88a5549ab62c71913cb
 URL:		https://wiki.gnome.org/Projects/LibGWeather
 BuildRequires:	geocode-glib-devel
 BuildRequires:	gettext-tools >= 0.18
@@ -35,8 +35,6 @@ Requires:	glib2 >= 1:2.44.0
 Requires:	gtk+3 >= 3.14.0
 Requires:	libsoup >= 2.44.0
 Requires:	libxml2 >= 1:2.6.30
-# sr@Latn vs. sr@latin
-Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -82,7 +80,7 @@ Summary:	libgweather API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libgweather
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
@@ -98,6 +96,9 @@ Summary(pl.UTF-8):	Plik katalogu libgweather dla Glade
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	glade >= 2.0
+%if "%{_rpmversion}" >= "4.6"
+BuildArch:	noarch
+%endif
 
 %description glade
 libgweather catalog file for Glade.
@@ -111,7 +112,7 @@ Summary(pl.UTF-8):	API biblioteki libgweather dla języka Vala
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.18.0
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
