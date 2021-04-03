@@ -6,12 +6,12 @@
 Summary:	Library to access weather information from online services for numerous locations
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
-Version:	3.36.1
+Version:	40.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libgweather/3.36/%{name}-%{version}.tar.xz
-# Source0-md5:	d6081108f9c224c5cb594f8ccb025db9
+Source0:	https://download.gnome.org/sources/libgweather/40/%{name}-%{version}.tar.xz
+# Source0-md5:	a9c0989890a837982defd8238e1eb356
 URL:		https://wiki.gnome.org/Projects/LibGWeather
 BuildRequires:	geocode-glib-devel
 BuildRequires:	gettext-tools >= 0.18
@@ -25,6 +25,7 @@ BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	meson >= 0.50.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.19
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.18.0}
@@ -151,9 +152,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f libgweather-3.0.lang
 %defattr(644,root,root,755)
-%doc AUTHORS MAINTAINERS NEWS README.md
+%doc AUTHORS NEWS README.md
 %attr(755,root,root) %{_libdir}/libgweather-3.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgweather-3.so.16
+%dir %{_libdir}/libgweather
+%{_libdir}/libgweather/Locations.bin
 %{_datadir}/glib-2.0/schemas/org.gnome.GWeather.enums.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.GWeather.gschema.xml
 %dir %{_datadir}/libgweather
