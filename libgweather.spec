@@ -25,6 +25,9 @@ BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	meson >= 0.50.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.19
+BuildRequires:	python3
+BuildRequires:	python3-modules
+BuildRequires:	python3-pygobject3
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
