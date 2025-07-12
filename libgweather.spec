@@ -7,7 +7,7 @@ Summary:	Library to access weather information from online services for numerous
 Summary(pl.UTF-8):	Biblioteka dostępu do informacji pogodowych z serwisów internetowych dla różnych miejsc
 Name:		libgweather
 Version:	40.0
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/libgweather/40/%{name}-%{version}.tar.xz
