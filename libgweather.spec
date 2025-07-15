@@ -124,18 +124,18 @@ API biblioteki libgweather dla języka Vala.
 %setup -q
 
 %build
-%meson build \
+%meson \
 	-Dglade_catalog=%{!?with_glade:false}%{?with_glade:true} \
 	-Dgtk_doc=true \
 	-Dzoneinfo_dir=%{_datadir}/zoneinfo \
 	-Denable_vala=%{!?with_vala:false}%{?with_vala:true}
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 # just a copy of es
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
